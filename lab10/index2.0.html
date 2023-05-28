@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -144,3 +145,151 @@
 </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Курс валют</title>
+  <!-- Підключення стилів Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <h1 class="text-center mb-4">Currency converter</h1>
+      <div class="form-group">
+        <label for="amount" class="form-label">Sum:</label>
+        <input type="number" id="amount" class="form-control" min="0">
+      </div>
+      <div class="form-group">
+        <label for="toCurrency" class="form-label">From:</label>
+        <select id="toCurrency" class="form-control">
+          <option value="UAH">Гривня</option>
+          <option value="USD">Долар США</option>
+          <option value="EUR">Євро</option>
+          <option value="GBP">Фунт стерлінгів</option>
+          <option value="CAD">Канадський долар</option>
+          <option value="JPY">Японська єна</option>
+          <option value="CNY">Китайський юань</option>
+          <option value="XAU">Золото (XAU)</option>
+          <option value="XAG">Срібло (XAG)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="fromCurrency" class="form-label">To:</label>
+        <select id="fromCurrency" class="form-control">
+          <option value="UAH">Гривня</option>
+          <option value="USD">Долар США</option>
+          <option value="EUR">Євро</option>
+          <option value="GBP">Фунт стерлінгів</option>
+          <option value="CAD">Канадський долар</option>
+          <option value="JPY">Японська єна</option>
+          <option value="CNY">Китайський юань</option>
+          <option value="XAU">Золото (XAU)</option>
+          <option value="XAG">Срібло (XAG)</option>
+        </select>
+      </div>
+      <div class="text-center">
+        <button onclick="convertCurrency()" class="btn btn-primary">Convert</button>
+      </div>
+      <div class="mt-4">
+        <h2 class="text-center mb-3">Result:</h2>
+        <div id="result" class="text-center alert alert-success"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Підключення скриптів Bootstrap -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  // Функція для отримання та відображення курсів валют
+  async function showCurrency() {
+    let response = await fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json');
+    let data = await response.json();
+
+    let selectedCurrency = ['UAH', 'USD', 'EUR', 'GBP', 'CAD', 'JPY', 'CNY', 'XAU', 'XAG'];
+
+    let table = document.createElement('table');
+    table.classList.add('table', 'table-bordered');
+
+    let row1 = document.createElement('tr');
+    row1.appendChild(document.createElement('td'));
+    row1.childNodes[0].innerHTML = 'Назва валюти';
+
+    for (let currencyCode of selectedCurrency) {
+      let cell = document.createElement('td');
+      cell.innerHTML = currencyCode;
+      row1.appendChild(cell);
+    }
+
+    table.appendChild(row1);
+
+    let row2 = document.createElement('tr');
+    row2.appendChild(document.createElement('td'));
+    row2.childNodes[0].innerHTML = 'Курс';
+
+    for (let currencyCode of selectedCurrency) {
+      let cell = document.createElement('td');
+      let currency;
+      if (currencyCode === 'XAU') {
+        currency = data.find(item => item.cc === 'XAU');
+      } else if (currencyCode === 'XAG') {
+        currency = data.find(item => item.cc === 'XAG');
+      } else {
+        currency = data.find(item => item.cc === currencyCode);
+      }
+      cell.innerHTML = currency.rate.toFixed(2);
+      row2.appendChild(cell);
+    }
+
+    table.appendChild(row2);
+
+    document.body.appendChild(table);
+  }
+
+  // Виклик функції для відображення курсів валют
+  showCurrency();
+
+  // Функція для конвертації валют
+  async function convertCurrency() {
+    let amountInput = document.getElementById('amount');
+    let fromCurrencySelect = document.getElementById('fromCurrency');
+    let toCurrencySelect = document.getElementById('toCurrency');
+    let resultOutput = document.getElementById('result');
+
+    let amount = parseFloat(amountInput.value);
+    let fromCurrency = fromCurrencySelect.value;
+    let toCurrency = toCurrencySelect.value;
+
+    let response = await fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json');
+    let data = await response.json();
+
+    let fromRate, toRate;
+
+    // Отримання курсу валют
+    if (fromCurrency === 'UAH') {
+      toRate = data.find(item => item.cc === toCurrency).rate;
+      fromRate = 1;
+    } else if (toCurrency === 'UAH') {
+      fromRate = data.find(item => item.cc === fromCurrency).rate;
+      toRate = 1;
+    } else {
+      fromRate = data.find(item => item.cc === fromCurrency).rate;
+      toRate = data.find(item => item.cc === toCurrency).rate;
+    }
+
+    // Розрахунок конвертації
+    let result = (amount / fromRate) * toRate;
+
+    // Виведення результату
+    resultOutput.innerHTML = result.toFixed(2);
+  }
+</script>
+</body>
+</html>
+>>>>>>> 1091a993c74e46775bafcfc9f9daaddbbe2de316
