@@ -54,7 +54,17 @@ class AccountingCollection {
     }
 }
 
-const employees = new AccountingCollection()
+const accountingCollection = new AccountingCollection();
+
+// Додавання об'єктів
+accountingCollection.addRange([
+    new Accounting("A01", "John Doe", "Accountant", 3000, 2, 5),
+    new Accounting("A02", "Jane Doe", "Accountant", 2500, 0, 3),
+    new Accounting("A03", "Bob Smith", "Manager", 5000, 1, 10)
+]);
+
+const employees = new AccountingCollection();
+
 function addEmployee() {
     const code = document.getElementById("code").value;
     const name = document.getElementById("name").value;
@@ -65,7 +75,7 @@ function addEmployee() {
 
     const employee = new Accounting(code, name, position, salary, children, experience);
 
-    employees.add(employee)
+    employees.add(employee);
 
     alert(`Додано співробітника:\nКод: ${code}\nПІБ: ${name}\nПосада: ${position}\nЗарплата: ${salary}\nКількість дітей: ${children}\nСтаж: ${experience}`);
 }
@@ -75,18 +85,17 @@ function getEmployee() {
     const employee = employees.getOne(code);
     if (employee) {
         alert(`
-      Код: ${employee.code}
-      ПІБ: ${employee.fullName}
-      Посада: ${employee.position}
-      Заробітна плата: ${employee.salary}
-      Кількість дітей: ${employee.childrenCount}
-      Стаж: ${employee.experience}
-    `);
+            Код: ${employee.code}
+            ПІБ: ${employee.fullName}
+            Посада: ${employee.position}
+            Заробітна плата: ${employee.salary}
+            Кількість дітей: ${employee.childrenCount}
+            Стаж: ${employee.experience}
+        `);
     } else {
         alert("Співробітника з таким кодом не знайдено!");
     }
 }
-
 
 function editEmployee() {
     const code = document.getElementById("code").value;
@@ -110,16 +119,10 @@ function editEmployee() {
     }
 }
 
-
 function deleteEmployee() {
     const code = document.getElementById("code").value;
-    const index = employees.findIndexByCode(code);
-    if (index !== -1) {
-        employees.remove(index);
-        alert("Інформацію про співробітника успішно видалено!");
-    } else {
-        alert("Співробітника з таким кодом не знайдено!");
-    }
+    employees.remove(code);
+    alert("Інформацію про співробітника успішно видалено!");
 }
 
 function getFilteredEmployees() {
@@ -132,17 +135,16 @@ function getFilteredEmployees() {
         let result = "Список співробітників:\n\n";
         filteredEmployees.forEach(employee => {
             result += `
-        Код: ${employee.code}
-        ПІБ: ${employee.fullName}
-        Посада: ${employee.position}
-        Заробітна плата: ${employee.salary}
-        Кількість дітей: ${employee.childrenCount}
-        Стаж: ${employee.experience}\n\n
-      `;
+                Код: ${employee.code}
+                ПІБ: ${employee.fullName}
+                Посада: ${employee.position}
+                Заробітна плата: ${employee.salary}
+                Кількість дітей: ${employee.childrenCount}
+                Стаж: ${employee.experience}\n\n
+            `;
         });
         alert(result);
     } else {
         alert("Не знайдено жодного співробітника за вказаними критеріями.");
     }
 }
-

@@ -68,14 +68,22 @@ accountingCollection.add(
     new Accounting("A03", "Bob Smith", "Manager", 5000, 1, 10)
 );
 
+console.log("Додано об'єкти:");
+console.log(accountingCollection.items);
+
 // Редагування інформації про об'єкт
 accountingCollection.edit("A02", { salary: 2800 });
+console.log("Редаговано об'єкт A02:");
+console.log(accountingCollection.getOne("A02"));
 
 // Видалення об'єкта
 accountingCollection.remove("A03");
+console.log("Видалено об'єкт A03:");
+console.log(accountingCollection.items);
 
 // Отримання інформації щодо одного об'єкта
 const accounting = accountingCollection.getOne("A01");
+console.log("Отримано інформацію про об'єкт A01:");
 console.log(accounting);
 
 // Отримання вибірки з колекції
@@ -83,4 +91,7 @@ const filtered = accountingCollection.getFilteredByPositionAndChildrenCount(
     "Accountant",
     2
 );
+console.log("Фільтрована колекція:");
+
+
 console.log(filtered);

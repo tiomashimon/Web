@@ -1,34 +1,65 @@
-<form>
-    <label for="code">Код:</label>
-    <input type="text" id="code" name="code"><br><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Form</title>
+    <!-- Підключення стилів Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<form class="container">
+    <div class="form-group">
+        <label for="code">Код:</label>
+        <input type="text" class="form-control" id="code" name="code">
+    </div>
 
-    <label for="name">ПІБ:</label>
-    <input type="text" id="name" name="name"><br><br>
+    <div class="form-group">
+        <label for="name">ПІБ:</label>
+        <input type="text" class="form-control" id="name" name="name">
+    </div>
 
-    <label for="position">Посада:</label>
-    <input type="text" id="position" name="position"><br><br>
+    <div class="form-group">
+        <label for="position">Посада:</label>
+        <input type="text" class="form-control" id="position" name="position">
+    </div>
 
-    <label for="salary">Заробітна плата:</label>
-    <input type="text" id="salary" name="salary"><br><br>
+    <div class="form-group">
+        <label for="salary">Заробітна плата:</label>
+        <input type="text" class="form-control" id="salary" name="salary">
+    </div>
 
-    <label for="children">Кількість дітей:</label>
-    <input type="text" id="children" name="children"><br><br>
+    <div class="form-group">
+        <label for="children">Кількість дітей:</label>
+        <input type="text" class="form-control" id="children" name="children">
+    </div>
 
-    <label for="experience">Стаж:</label>
-    <input type="text" id="experience" name="experience"><br><br>
+    <div class="form-group">
+        <label for="experience">Стаж:</label>
+        <input type="text" class="form-control" id="experience" name="experience">
+    </div>
 
-    <button type="button" onclick="addEmployee()">Додати співробітника</button>
-    <button type="button" onclick="getEmployee()">Інформація про співробітника</button>
-    <button type="button" onclick="editEmployee()">Редагувати інформацію</button>
-    <button type="button" onclick="deleteEmployee()">Видалити співробітника</button>
+    <button type="button" class="btn btn-primary" onclick="addEmployee()">Додати співробітника</button>
+    <button type="button" class="btn btn-primary" onclick="getEmployee()">Інформація про співробітника</button>
+    <button type="button" class="btn btn-primary" onclick="editEmployee()">Редагувати інформацію</button>
+    <button type="button" class="btn btn-primary" onclick="deleteEmployee()">Видалити співробітника</button>
     <br><br>
 
-    <label for="position-filter">Посада:</label>
-    <input type="text" id="position-filter" name="position-filter"><br><br>
+    <div class="form-group">
+        <label for="position-filter">Посада:</label>
+        <input type="text" class="form-control" id="position-filter" name="position-filter">
+    </div>
 
-    <label for="children-filter">Кількість дітей:</label>
-    <input type="text" id="children-filter" name="children-filter"><br><br>
+    <div class="form-group">
+        <label for="children-filter">Кількість дітей:</label>
+        <input type="text" class="form-control" id="children-filter" name="children-filter">
+    </div>
 
-    <button type="button" onclick="getFilteredEmployees()">Пошук співробітників</button>
+    <button type="button" class="btn btn-primary" onclick="getFilteredEmployees()">Пошук співробітників</button>
 </form>
+
+<!-- Підключення скриптів Bootstrap -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="main.js"></script>
+</body>
+</html>

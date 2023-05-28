@@ -1,4 +1,4 @@
-// Перший обєкт
+// Перший об'єкт
 function Accountant(code, fullName, position, salary, numOfChildren, experience) {
     this.code = code;
     this.fullName = fullName;
@@ -20,8 +20,7 @@ accountant1.getInfo();
 accountant2.getInfo();
 accountant3.getInfo();
 
-// 2
-
+// Другий об'єкт
 function DAI(code, ownerName, carBrand, carNumber, carColor) {
     this.code = code;
     this.ownerName = ownerName;
@@ -30,16 +29,15 @@ function DAI(code, ownerName, carBrand, carNumber, carColor) {
     this.carColor = carColor;
 
     this.getInfo = function() {
-        console.log(Код: ${this.code}; Власник: ${this.ownerName}; Марка авто: ${this.carBrand}; Номер авто: ${this.carNumber}; Колір авто: ${this.carColor});
+        console.log(`Код: ${this.code}; Власник: ${this.ownerName}; Марка авто: ${this.carBrand}; Номер авто: ${this.carNumber}; Колір авто: ${this.carColor}`);
     }
 }
 
-// приклад створення об'єкту
+// Приклад створення об'єкту
 const dai1 = new DAI(1, "Іван Іванов", "Ford", "ВЕ1234АС", "сірий");
 dai1.getInfo(); // викликаємо метод для виведення інформації про об'єкт
 
-//3
-
+// Третій об'єкт
 function Company(code, name, employees, industry, address) {
     this.code = code;
     this.name = name;
@@ -48,14 +46,14 @@ function Company(code, name, employees, industry, address) {
     this.address = address;
 
     this.getInfo = function() {
-        console.log(`Код: ${this.code}; 
-    Назва: ${this.name}; 
-    Кількість співробітників: ${this.employees}; 
-    Галузь: ${this.industry}; 
-    Адреса: ${this.address}`);
+        console.log(`Код: ${this.code};
+Назва: ${this.name};
+Кількість співробітників: ${this.employees};
+Галузь: ${this.industry};
+Адреса: ${this.address}`);
     }
 }
 
-// приклад створення об'єкту
+// Приклад створення об'єкту
 const company1 = new Company(1, "Acme Inc.", 100, "Інформаційні технології", "вул. Київська, 123");
 company1.getInfo(); // викликаємо метод для виведення інформації про об'єкт
